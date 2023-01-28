@@ -16,10 +16,19 @@ const express_1 = __importDefault(require("express"));
 const newsController_1 = require("../controller/newsController");
 const routes = express_1.default.Router();
 routes.get("/get/news/:keyword", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    const keyword = (_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.keyword;
-    const result = yield (0, newsController_1.getNewByKeyword)(keyword);
-    console.log(result === null || result === void 0 ? void 0 : result.data);
-    res.status(200).json(result === null || result === void 0 ? void 0 : result.data);
+    var _a, _b;
+    try {
+        const keyword = (_a = req === null || req === void 0 ? void 0 : req.params) === null || _a === void 0 ? void 0 : _a.keyword;
+        const currentPage = Number((_b = req === null || req === void 0 ? void 0 : req.query) === null || _b === void 0 ? void 0 : _b.page) || 1;
+        const result = yield (0, newsController_1.getNewsByKeyword)(keyword, currentPage);
+        res.status(200).json(result);
+    }
+    catch (error) {
+        console.log(error);
+        let message = "Unknown Error";
+        if (error instanceof Error)
+            message = error.message;
+        res.status(404).json({ message });
+    }
 }));
 exports.default = routes;
