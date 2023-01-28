@@ -32,4 +32,4 @@ yarn start
 pnpm start
 ```
 
-Open [http://localhost:8080/get/news/:keyword](http://localhost:8080/get/news/:keyword) with your browser to see the result.
+Open [http://localhost:8080/get/news/:keyword](http://localhost:8080/get/news/:keyword) or https://dead-cyan-whale-belt.cyclic.app/get/news/bitcoin with your browser to see the result.
